@@ -29,7 +29,7 @@ const app = createApp(App)
   .use(router)
   .use(store as any)
 
- /* .use(VueGoogleMaps, {
+  .use(VueGoogleMaps, {
     load: {
      // version :'weekly',
       // libraries: "visualization"
@@ -37,7 +37,7 @@ const app = createApp(App)
         key: 'AIzaSyBw834lTlc-gq-XDeBV8jSk3cleQl0i_j0',
         // language: 'de',
     },
-}) */
+}) 
 router.isReady().then(() => {
   app.mount('#app');
 });

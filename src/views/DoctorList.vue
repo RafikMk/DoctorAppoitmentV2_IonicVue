@@ -1,32 +1,12 @@
 <template>
     <ion-page id="main-content"> 
     <ion-header class="back"></ion-header>
-  <div class="head">
-    <ion-menu-toggle>
-              <ion-button fill="clear">
-    <ion-img :src="require('../../public/assets/imgs/burger.png')"></ion-img>
-  </ion-button>
-          </ion-menu-toggle>
-          <ion-chip>
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://github.com/vagnersabadi/ionic-doctor-appointments-app/blob/main/src/assets/avatar.png?raw=true" />
-    </ion-avatar>
-    <ion-label>{{this.$store.state.auth.user.username
-}}</ion-label>
-  </ion-chip>
-    <ion-item class="head2" lines="none">
-      <strong style="color:white;" >Doctor Appointment</strong>
-    </ion-item>
-    <ion-item class="cirles" lines="none">
-      
-    </ion-item>
     <div lines="none" class="search">
-      <ion-input placeholder="Search, e.g. Dr.Louis Pasterur">
-        <ion-button color="tertiary">
-          <ion-icon :icon="searchOutline" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-input>
-    </div>
+    <ion-input placeholder="Search, e.g. Dr.Louis Pasterur">
+      <ion-button color="tertiary">
+        <ion-icon :icon="searchOutline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-input>
   </div>
   <ion-content>
   <div>
@@ -106,16 +86,17 @@
 
   import {searchOutline } from 'ionicons/icons';
   import {
+    IonGrid,
+    IonRow,
+    IonImg,
+    IonCol,
     IonPage,
     IonHeader,
        IonButton,
        IonContent,
-       IonMenuToggle,
        modalController,
        IonThumbnail,
-       IonChip,
-       IonAvatar,
-       IonText,
+         IonText,
        IonLabel,
        IonInput,
        IonItem,
@@ -133,18 +114,18 @@
 
       export default defineComponent({
         components: {
+          IonGrid,
+    IonRow,
           IonPage,
-
+          IonImg,
+    IonCol,
           IonHeader,
        IonButton,
        IonContent,
        IonIcon,
-       IonMenuToggle,
        IonThumbnail,
        Swiper,
        SwiperSlide,
-       IonChip,
-       IonAvatar,
        IonText,
        IonLabel,
        IonInput,

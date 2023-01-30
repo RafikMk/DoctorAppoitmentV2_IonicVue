@@ -3,9 +3,12 @@
     <ion-header class="back"></ion-header>
     <ion-content >
       <!-- DIRECT CHAT PRIMARY -->
-      <div style="height: 93%;" class="box box-primary direct-chat direct-chat-primary">
+      <div style="
+    height: 93%;
+" class="box box-primary direct-chat direct-chat-primary">
         <div class="box-header with-border" >
           <h3 class="box-title">Direct Chat</h3>
+    
           <div class="box-tools pull-right">
             <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title="3 New Messages">3</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -18,25 +21,123 @@
         <!-- /.box-header -->
         <div class="box-body">
           <!-- Conversations are loaded here -->
-          <div  class="direct-chat-messages">
+          <div class="direct-chat-messages">
             <!-- Message. Default to the left -->
-            <div v-for="(message) in messages" :key="message.id" :class="[message.envoye_par === message.doctor_id ? '' : 'right','direct-chat-msg']">
+            <div class="direct-chat-msg">
               <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name pull-left">  {{ message.envoye_par === message.doctor_id ? message.doctor.name : message.patient.name }}</span>
-                <span class="direct-chat-timestamp pull-right"> {{ formattedDate(message.created_at) }} </span>
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
               </div>
               <!-- /.direct-chat-info -->
               <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
               <div class="direct-chat-text">
-                {{ message.message }}              </div>
+                Is this template really for free? That's unbelievable!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>  <div class="direct-chat-msg">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-left">Alexander Pierce</span>
+                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            
+            <!-- /.direct-chat-msg -->
+    
+            <!-- Message to the right -->
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+              <!-- /.direct-chat-text -->
+            </div>
+            <div class="direct-chat-msg right">
+              <div class="direct-chat-info clearfix">
+                <span class="direct-chat-name pull-right">Sarah Bullock</span>
+                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+              </div>
+              <!-- /.direct-chat-info -->
+              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_2.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
               <!-- /.direct-chat-text -->
             </div>
             <!-- /.direct-chat-msg -->
-            <!-- Message to the right -->
-           
-            <!-- /.direct-chat-msg -->
           </div>
-          <!--/.direct-chat-messages-->   
+          <!--/.direct-chat-messages-->
+    
           <!-- Contacts are loaded here -->
           <div class="direct-chat-contacts">
             <ul class="contacts-list">
@@ -64,10 +165,10 @@
         
         <div class="box-footer" style="position:fixed; bottom: 0; width: 100%;">
             <div class="input-group" style="width: 100%;">
-    <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..."  v-model="message" @keyup.enter="sendMessage" >
+    <input id="btn-input" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." >
 
     <span class="input-group-btn">
-      <button class="btn btn-primary btn-sm" id="btn-chat" @click="sendMessage">
+      <button class="btn btn-primary btn-sm" id="btn-chat" >
         Send
       </button>
     </span>
@@ -79,89 +180,48 @@
     </ion-content>
 
 </ion-page> 
-</template> 
-    
-    <script>
-    import { defineComponent } from "vue";
-    import {modalController} from "@ionic/vue";
-    import {pusher} from './pusher'
-    import { IonPage,IonHeader,IonContent} from '@ionic/vue';
-    import moment from 'moment';
-
-  import axios from  "axios";
-    export default defineComponent({ 
-      components: {IonPage,IonHeader,IonContent},
-
-      name: "ChatPage",
-      setup() {
-      const closeModal = () => {
-        modalController.dismiss();
+            </template>
+            
+            <script lang="ts">
         
-      }
-      return { closeModal  };
-      
-  },
-  props: {
-    doctor_id: Number,
-  },
-  
-      data() {
-        return {
-          messages: [] , 
-        message: '' ,
-          
-        }
-      },
-      methods: {
-        formattedDate(date) {
-      return moment(date).format('DD MMM hh:mm a');
-    },
-        isLastMessage(index) {
-      if (index === this.messages.length - 1) {
-        return true;
-      }
-      return this.messages[index].envoye_par !== this.messages[index + 1].envoye_par;
-    },
-      sendMessage() {
-        const doctor_id =this.doctor_id 
-        const patient_id =this.$store.state.auth.user.id
-        axios.post('http://localhost:8000/api/send-message', {patient_id:patient_id , doctor_id :doctor_id ,message: this.message })
-          .then(response => {
-            this.message = ''
-          })   
-          .catch(error => {
-            console.log(error)      
-          }) 
-      }  
-      },
-  mounted: function(){
-  //  alert(this.doctor_id) ;
-  const patient_id =this.$store.state.auth.user.id
-
-     // alert(this.$store.state.auth.user.id )
-     const channel = pusher.subscribe('doctor_'+this.doctor_id);
-  console.log(channel) ;
-  channel.bind('patient_'+patient_id, (data) => {
-    console.log("channel name is: ", channel.name);
-   this.messages.push(data)
-  
-    console.log(JSON.stringify(data));
-    });
-    },
-    created() {
-        const patient_id =this.$store.state.auth.user.id
-      axios.get('http://localhost:8000/api/messages/doctor/'+this.doctor_id+'/patient/'+patient_id )
-        .then(response => {
-          this.messages = response.data
-        console.log(this.messages)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+                import { defineComponent } from 'vue';
     
-  },
-    })
-    </script>            <style>
+                export default defineComponent({
+                components: {
+                },
+                
+                data(){
+                    return{
+            
+                    }
+                },
+                
+            
+            computed: {
+          
+            },
+                methods:{
+            
+            },
+        
+            mounted: function(){
+           /*   const myTimeout = setTimeout(()=>
+           {
+            this.start = 'lyon',
+            this.end = 'paris'
+         //  this.end = 'okland' 
+           }
+           , 
+           900);*/
+      
+           
+    
+      },
+                });
+            
+            
+            </script>
+            <style>
         body{
     margin-top:20px;
     background:#eee;

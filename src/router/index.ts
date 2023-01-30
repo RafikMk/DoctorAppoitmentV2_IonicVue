@@ -12,6 +12,8 @@ import UpdateProfilePatient from '../views/UpdateProfilePatient.vue'
 import googleMap from '../views/googleMap.vue'
 import uidesign from '../views/uidesignPage.vue'
 import ChatPage from '../views/ChatPage.vue'
+import testchat from '../views/testChat.vue'
+
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -20,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home'
   },
     {
+    path: '/testchat',
+    name: 'testchat',
+    component: testchat
+  },
+  {
     path: '/ChatPage',
     name: 'ChatPage',
     component: ChatPage

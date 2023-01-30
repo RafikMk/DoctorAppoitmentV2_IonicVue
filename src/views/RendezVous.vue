@@ -1,18 +1,13 @@
 <template>
-    <ion-page id="main-content"> 
-    <ion-header class="back"><ion-toolbar class="back">
-        <ion-menu-toggle>
-            <ion-button fill="clear">
-  <ion-img :src="require('../../public/assets/imgs/barss.png')"></ion-img>
-</ion-button>
-        </ion-menu-toggle>
-        <ion-chip>
-  <ion-avatar>
-    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-  </ion-avatar>
-  <ion-label>{{this.$store.state.auth.user.username
-}}</ion-label></ion-chip>
-</ion-toolbar></ion-header>
+  <ion-page id="main-content"> 
+  <ion-header class="back"></ion-header>
+  <div lines="none" class="search">
+    <ion-input placeholder="Search, e.g. Dr.Louis Pasterur">
+      <ion-button color="tertiary">
+        <ion-icon :icon="searchOutline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-input>
+  </div>
 <ion-content>
   <ion-list>
     <ion-item >
@@ -60,21 +55,19 @@
 </ion-page>
 </template>
 <script lang="ts">
-  import { IonButtons, IonButton, IonModal, IonToolbar, IonTitle } from '@ionic/vue';
+  import { IonButtons, IonButton, IonModal, IonToolbar, IonTitle,IonItem,IonList } from '@ionic/vue';
 
 import axios from  "axios";
-import {starOutline,starSharp } from 'ionicons/icons';
+import {starOutline,starSharp } from 'ionicons/icons';  import {searchOutline } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 import {
     IonContent,
     IonHeader,
     IonPage,
-    IonMenuToggle,
     IonLabel,IonIcon
   } from '@ionic/vue';
 export default defineComponent({
-    components: {
-      IonMenuToggle,
+    components: {IonItem,IonList,
       IonLabel,    
       IonContent,
       IonHeader,
@@ -82,7 +75,7 @@ export default defineComponent({
       IonButtons, IonButton, IonModal, IonToolbar, IonTitle 
     },
     data(){
-        return{
+        return{searchOutline:searchOutline,
           isOpen: false,
           presc : null as any,
           appointments: [] as any,
@@ -199,3 +192,181 @@ console.log(response)
 
 
 </script>
+
+<style scoped>
+.icon-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.cirles{
+  --background:white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.head{
+  background-color: #2C2B47;
+}
+
+.status-circle-online {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #22ff00;
+  border: 2px solid white;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+.status-circle-offline {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(255, 0, 0);
+  border: 2px solid white;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+ion-header ion-toolbar {
+  overflow: hidden;
+}
+
+ion-chip {
+  --background: #dfdfdf;
+  float: right;
+  color: rgb(27, 22, 22);
+}
+.head2{
+  --background:#2C2B47;
+  height: 40px;
+}
+
+#page {
+  --background: #fff
+}
+
+#menu {
+  --background: url(../../public/assets/imgs/6.png) 0 0/100% 100% no-repeat;
+}
+
+
+.back {
+  --background: #fff;
+}
+
+.custom {
+  --background: #dfdfdf;
+  --color: rgb(27, 22, 22);
+  --placeholder-color: rgb(66, 66, 66);
+  --placeholder-opacity: .8;
+  border-radius: 20px;
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  width: 90%;
+  margin: auto;
+
+
+}
+
+.header strong {
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.header ion-avatar {
+  --border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.sub-title {
+  padding: 16px;
+}
+
+.sub-title strong {
+  font-size: 18px;
+  line-height: 36px;
+}
+
+.search {
+  top: 40px;
+  display: flex;
+  background:white ;
+}
+
+.search ion-input {
+  background: rgb(234, 232, 232);
+  border-radius: 10px;
+  width:50px;
+  --padding-start: 16px;
+  font-size: 12px;
+
+}
+
+.search ion-button {
+  height: 45px;
+  width: 50px;
+  --border-radius: 30px 10px 10px 10px;
+  order: 1;
+}
+
+.list-doctors {
+  padding: 16px;
+ 
+  --border-radius: 10px;
+}
+
+.list-doctors .status {
+  width: 20px;
+  background: green;
+}
+
+.list-doctors ion-thumbnail {
+  --border-radius: 10px;
+}
+
+.list-doctors ion-item {
+  background-color:#f7be3021;
+  border-radius: 10px;
+  margin-bottom: 8px;
+
+}
+
+.list-doctors ion-item:first-child {
+  --background: #f7be30 21;
+  opacity: none;
+  opacity: 1;
+}
+
+.card-categories {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  background: var(--ion-color-light);
+  border-radius: 10px;
+  color: white;
+  width: 110px;
+  margin-left:10px;
+  opacity: 0.8;
+}
+
+.card-categories ion-icon {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+  /* Material Design styles */
+
+  
+   </style>
+   

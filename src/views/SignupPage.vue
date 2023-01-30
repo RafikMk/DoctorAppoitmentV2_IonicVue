@@ -2,26 +2,38 @@
   
     <ion-page>
 
-        <ion-content :fullscreen="false">
-            <div class="center">
-                <ion-input v-model="user.username" placeholder="username" class="custom"></ion-input>
-                <ion-input v-model="user.email" type="email" placeholder="email" class="custom"></ion-input>
-                <ion-input v-model="user.password" type="password" placeholder="Password" class="custom"></ion-input>
-                <ion-button class="butt" @click="handleRegister()" shape="round" color="#FCAFB7" size="large">Sign in</ion-button>
-            </div>
-        </ion-content>
+      <ion-content :fullscreen="false">
+    <div class="center">
+        <ion-input v-model="user.username" placeholder="username" class="custom"></ion-input>
+        <ion-input v-model="user.email" type="email" placeholder="email" class="custom"></ion-input>
+        <ion-input v-model="user.password" type="password" placeholder="Password" class="custom"></ion-input>
+        <div style="display: flex;">
+  <ion-radio-group  v-model="user.gender">
+    <ion-icon slot="start" :icon="man" style="font-size: 4rem;color: rgb(0 202 255);"></ion-icon>
+ <ion-radio  value="male"> </ion-radio>
+ <ion-icon slot="start" :icon="woman" style="font-size: 4rem;color: rgb(255 0 234);"></ion-icon>
+
+<ion-radio value="female">
+    </ion-radio>
+  </ion-radio-group>
+</div>
+        <ion-button class="butt" @click="handleRegister()" shape="round" color="#FCAFB7" size="large">Sign in</ion-button>
+    </div>
+</ion-content>
 
     </ion-page>
 
 </template>
 <script lang="ts">
-import { IonContent,  IonPage,  IonButton,IonInput } from '@ionic/vue';
+    import { man, woman } from 'ionicons/icons';
+
+import { IonContent,  IonPage,  IonButton,IonInput,IonRadio,IonRadioGroup,IonIcon } from '@ionic/vue';
 import { defineComponent } from 'vue'
 
 export default defineComponent({
 
     name: 'SignUp',
-    components: {
+    components: {IonRadio,IonRadioGroup,IonIcon,
       IonContent,
       IonInput,
       IonPage,
@@ -29,6 +41,8 @@ export default defineComponent({
     },
     data() {
         return {
+          woman:woman,
+          man:man,
             user :{} as any ,
             isActive: true,
             hasError: false,
@@ -123,6 +137,8 @@ ion-content {
     top: 504px;
     margin: auto;
     width: 100%;
+    left: 10%;
+
 }
 
 .custom {
@@ -154,4 +170,31 @@ ion-button {
 
 
 }
+.center {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .center > * {
+        margin: 10px 0;
+    }
+    ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+
+    --color: #ddd;
+    --color-checked: #6815ec;
+  }
+
+  ion-radio.ios {
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .radio-checked.ios {
+    border-color: #6815ec;
+  }
 </style>

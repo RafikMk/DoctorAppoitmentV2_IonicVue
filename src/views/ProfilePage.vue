@@ -27,8 +27,8 @@
     <h3 id="profile-name">Dr. {{Doctor.name}}</h3>
 
     <div class="ion-text-center group-actions">
-      <ion-button :style="{background:'#5260ff29'}">
-        <ion-icon slot="icon-only" :icon="chatbox"></ion-icon>
+      <ion-button :style="{background:'#5260ff29'}"  v-on:click="DisplayMessages(Doctor.id)">
+        <ion-icon slot="icon-only" :icon="chatbox" ></ion-icon>
       </ion-button>
       <ion-button :style="{background:'#ffc40929'}"> 
         <ion-icon slot="icon-only" :icon="navigate"></ion-icon>
@@ -147,16 +147,18 @@
 
 <script lang="ts">
 import { IonIcon } from '@ionic/vue';
-import {IonToast, IonContent, IonHeader, IonToolbar,modalController,IonButton,IonButtons,IonItem,IonChip} from "@ionic/vue";
+import {IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal, IonToast, IonContent, IonHeader, IonToolbar,modalController,IonButton,IonButtons,IonItem,IonChip} from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from  "axios";
 import BooKing from './BooKing.vue'
+import Chat from './ChatPage.vue'
 import {chevronBack,chevronForward,time,videocam,call,navigate,chatbox,camera,location}  from 'ionicons/icons';
 import DirectionsRenderer from '../js/DirectionsRenderer.js'
 import * as  decode from '../js/decode.js'
 export default defineComponent({
   name: "ModaL",
-  components: { IonToast,IonContent, IonHeader,  IonToolbar ,IonIcon,IonButton,IonButtons, IonItem,IonChip, DirectionsRenderer
+  components: { IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal,
+    IonToast,IonContent, IonHeader,  IonToolbar ,IonIcon,IonButton,IonButtons, IonItem,IonChip, DirectionsRenderer
 },
   setup() {
     const closeModal = () => {
@@ -169,14 +171,22 @@ export default defineComponent({
           component: BooKing, 
           componentProps: { 
           day:day,
-          doctor:doctor
-          
-          
+          doctor:doctor     
         }
         });
         return modal.present();
     }
-    return { openModal ,closeModal  };
+    const openModalOfMessages = async (id) => {
+      
+        const modal = await modalController.create({
+          component: Chat, 
+          componentProps: { 
+          doctor_id:id,
+        }
+        });
+        return modal.present();
+    }
+    return { openModal ,closeModal,openModalOfMessages  };
 },
   props: {
 		doctor: Object ,
@@ -346,12 +356,19 @@ getDoctorsDays(id){
       this.theDay=this.DoctorDays.find(i => i.date == formattedDate)
     },
     showToaster(day) {
+
     if(!day) {
       this.showToast = true;
     }else{
      this.openModal(day,this.doctor)
     
     }
+  },
+  DisplayMessages(id)
+  {
+    
+ this.openModalOfMessages(id)
+
   }
 
     },

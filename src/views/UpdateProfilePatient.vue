@@ -1,18 +1,7 @@
 <template>
     <ion-page id="main-content"> 
-    <ion-header class="back"><ion-toolbar class="back">
-        <ion-menu-toggle>
-            <ion-button fill="clear">
-  <ion-img :src="require('../../public/assets/imgs/barss.png')"></ion-img>
-</ion-button>
-        </ion-menu-toggle>
-        <ion-chip>
-  <ion-avatar>
-    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-  </ion-avatar>
-  <ion-label>{{doctor.name}}</ion-label>
-</ion-chip>
-</ion-toolbar></ion-header>
+    <ion-header class="back">
+</ion-header>
 <ion-content>
   <div>
     <div>
@@ -86,24 +75,20 @@
 import axios from  "axios";
 import {starOutline,starSharp } from 'ionicons/icons';
 import { defineComponent } from 'vue';
-import {IonChip,IonAvatar,IonImg,IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader ,
+import {IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader ,IonCol,
     IonContent,
     IonHeader,
     IonPage,
-    IonMenuToggle,
-    IonLabel,IonIcon,IonToolbar,
-    IonSelect,IonSelectOption
+    IonLabel,
+    IonSelect,IonSelectOption,IonList,IonRow
   } from '@ionic/vue';
 export default defineComponent({
     components: {
-      IonImg,IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader,
-      IonToolbar,
-      IonMenuToggle,
+      IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader,IonList,IonRow,IonCol,
       IonLabel,    
       IonContent,
       IonHeader,
       IonPage,
-      IonChip,IonAvatar,
       IonSelect,IonSelectOption
 
     },
