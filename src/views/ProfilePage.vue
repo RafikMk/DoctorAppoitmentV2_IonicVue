@@ -27,17 +27,17 @@
     <h3 id="profile-name">Dr. {{Doctor.name}}</h3>
 
     <div class="ion-text-center group-actions">
-      <ion-button :style="{background:'#5260ff29'}"  v-on:click="DisplayMessages(Doctor.id)">
-        <ion-icon slot="icon-only" :icon="chatbox" ></ion-icon>
+      <ion-button :style="{'--background':'#e9f1ff'}"  v-on:click="DisplayMessages(Doctor.id)">
+        <ion-icon slot="icon-only" :icon="chatbox" style="color: #6ea8fd;" ></ion-icon>
       </ion-button>
-      <ion-button :style="{background:'#ffc40929'}"> 
-        <ion-icon slot="icon-only" :icon="navigate"></ion-icon>
+      <ion-button :style="{'--background':'#fff7eb'}"> 
+        <ion-icon slot="icon-only" :icon="navigate" style="color: #fed666;"></ion-icon>
       </ion-button>
-      <ion-button :style="{background:'#BEC0C629'}">
-        <ion-icon slot="icon-only" :icon="call"></ion-icon>
+      <ion-button :style="{'--background':'#f4f5f9'}">
+        <ion-icon slot="icon-only" :icon="call" style="color: #d5d6d9;"></ion-icon>
       </ion-button>
-      <ion-button :style="{background:'#eb445a29'}"  @click="setOpen(true)">
-        <ion-icon slot="icon-only" :icon="compassOutline"></ion-icon>
+      <ion-button :style="{'--background':'#f1f1ff'}"  @click="setOpen(true)">
+        <ion-icon slot="icon-only" :icon="compassOutline" style="color: #ed86aa;"></ion-icon>
      </ion-button>
 
 
@@ -151,6 +151,8 @@ import {IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal, IonTo
 import { defineComponent } from "vue";
 import axios from  "axios";
 import BooKing from './BooKing.vue'
+import api from "../services/api";
+
 import Chat from './ChatPage.vue'
 import {chevronBack,chevronForward,time,videocam,call,navigate,chatbox,camera,location}  from 'ionicons/icons';
 import DirectionsRenderer from '../js/DirectionsRenderer.js'
@@ -303,7 +305,7 @@ export default defineComponent({
   return result;
 },
 getDoctorsDays(id){
-  axios.get(`http://127.0.0.1:8000/api/doctor/${id}`).then((response)=>{
+  api.get(`http://127.0.0.1:8000/api/doctor/${id}`).then((response)=>{
   this.DoctorDays=response.data
   console.log(this.DoctorDays)
 })

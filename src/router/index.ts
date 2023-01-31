@@ -13,6 +13,7 @@ import googleMap from '../views/googleMap.vue'
 import uidesign from '../views/uidesignPage.vue'
 import ChatPage from '../views/ChatPage.vue'
 import testchat from '../views/testChat.vue'
+import testnewmenue from '../views/testnewmenue.vue'
 
 
 
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     redirect: '/home'
   },
     {
+    path: '/testnewmenue',
+    name: 'testnewmenue',
+    component: testnewmenue
+  },
+  {
     path: '/testchat',
     name: 'testchat',
     component: testchat

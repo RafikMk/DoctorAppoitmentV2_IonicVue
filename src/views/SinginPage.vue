@@ -5,16 +5,17 @@
         <ion-content :fullscreen="false">
             <div class="center">
                 <ion-input v-model="user.email"  placeholder="Email" class="custom"></ion-input>
-                <ion-input v-model="user.password" type="password" placeholder="Password" class="custom"></ion-input>
+                <ion-input v-model="user.password" @keyup.enter="handleLogin()" type="password" placeholder="Password" class="custom"></ion-input>
                 <ion-button class="butt" @click="handleLogin()" shape="round" color="#FCAFB7" size="large">Sign in</ion-button>
             </div>
+
         </ion-content>
 
     </ion-page>
  
 </template>
 <script lang="ts">
-import { IonContent,  IonPage,  IonButton,IonInput } from '@ionic/vue';
+import { IonContent,  IonPage,  IonButton,IonInput,toastController } from '@ionic/vue';
 import { defineComponent } from 'vue'
 export default defineComponent({
 
@@ -50,6 +51,16 @@ export default defineComponent({
     }
   },
     methods: {
+
+      async presentToast(position: 'top' | 'middle' | 'bottom') {
+        const toast = await toastController.create({
+          message: this.message,
+          duration: 1500,
+          position: position
+        });
+
+        await toast.present();
+      },
         handleLogin() {
       this.loading = true;
 
@@ -58,6 +69,7 @@ export default defineComponent({
           this.$router.push("/list");
         },
         (error : any) => {
+
             this.loading = false;
             this.message =
             (error.response &&
@@ -65,6 +77,7 @@ export default defineComponent({
             error.response.data.message) ||
             error.message ||
             error.toString();
+            this.presentToast('bottom')
         }
       );
     },
