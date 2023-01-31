@@ -82,6 +82,8 @@
 </template> 
     
     <script>
+      import api from "../services/api";
+
     import { defineComponent } from "vue";
     import {modalController} from "@ionic/vue";
     import {pusher} from './pusher'
@@ -125,7 +127,7 @@
       sendMessage() {
         const doctor_id =this.doctor_id 
         const patient_id =this.$store.state.auth.user.id
-        axios.post('http://localhost:8000/api/send-message', {patient_id:patient_id , doctor_id :doctor_id ,message: this.message })
+        api.post('/send-message', {patient_id:patient_id , doctor_id :doctor_id ,message: this.message })
           .then(response => {
             this.message = ''
           })   
@@ -150,7 +152,7 @@
     },
     created() {
         const patient_id =this.$store.state.auth.user.id
-      axios.get('http://localhost:8000/api/messages/doctor/'+this.doctor_id+'/patient/'+patient_id )
+      api.get('/messages/doctor/'+this.doctor_id+'/patient/'+patient_id )
         .then(response => {
           this.messages = response.data
         console.log(this.messages)

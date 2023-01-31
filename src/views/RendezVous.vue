@@ -56,6 +56,7 @@
 </template>
 <script lang="ts">
   import { IonButtons, IonButton, IonModal, IonToolbar, IonTitle,IonItem,IonList } from '@ionic/vue';
+  import api from "../services/api";
 
 import axios from  "axios";
 import {starOutline,starSharp } from 'ionicons/icons';  import {searchOutline } from 'ionicons/icons';
@@ -94,7 +95,7 @@ export default defineComponent({
       methods:{
         setOpen(isOpen: boolean,appointment : any) {
         this.isOpen = isOpen;
-        axios.get(`http://127.0.0.1:8000/api/prescription/2/${appointment.doctor_id}`).then(response => {
+        api.get(`/prescription/2/${appointment.doctor_id}`).then(response => {
       this.presc = response.data
       this.presc.ailment =response.data.data[0].ailment
       this.presc.symptoms =response.data.data[0].symptoms
@@ -105,7 +106,7 @@ export default defineComponent({
       },
     getbooking() {
 
-    axios.get(`http://127.0.0.1:8000/api/mybookings/${this.$store.state.auth.user.id}`).then(response => {
+    api.get(`/mybookings/${this.$store.state.auth.user.id}`).then(response => {
       this.appointments = response.data
     });
   },
@@ -166,7 +167,7 @@ console.log("no review")
   console.log("no review")
   }
   alert(this.starsnb2.length);
-  axios.get(`http://127.0.0.1:8000/api/review/${doctor_id}/${this.starsnb2.length}`).then(response => {
+  api.get(`/review/${doctor_id}/${this.starsnb2.length}`).then(response => {
 console.log(response)   
  });
 }

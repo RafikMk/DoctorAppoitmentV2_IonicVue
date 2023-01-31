@@ -33,7 +33,8 @@
     </div>
     <div class="list-doctors">
       <ion-item :key="index"
-          v-for="(item, index) in array1" lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
+          v-for="(item, index) in array1" :class="index % 2 === 0 ? 'even' : 'odd'"
+ lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
         <ion-ripple-effect></ion-ripple-effect>
         <ion-thumbnail  class='icon-container' slot="start">
           <ion-img :src="'http://127.0.0.1:8000/profile/'+item.image">
@@ -43,7 +44,6 @@
     <div  v-if="item.status=='onfline'" class='status-circle-offline'>
     </div>
         </ion-thumbnail>
-    
         <ion-grid>
   <ion-row>
     <ion-col ><ion-label class="ion-text-wrap">
@@ -56,8 +56,6 @@
           </h3>
         </ion-text>
       </ion-label></ion-col>
-   
-
   </ion-row>
   <ion-row>
 <ion-col>   
@@ -68,9 +66,6 @@
              active-color="#ffd500"
              v-bind:star-size="16">
 </star-rating>
-
-
-
     </ion-col>
   </ion-row>
 </ion-grid>
@@ -83,7 +78,7 @@
     </template>
     
     <script lang="ts">
-
+import api from "../services/api";
   import {searchOutline } from 'ionicons/icons';
   import {
     IonGrid,
@@ -107,7 +102,6 @@
       import 'swiper/css';
       import '@ionic/vue/css/ionic-swiper.css';
       import { Swiper, SwiperSlide } from 'swiper/vue';
-      import axios from  "axios";
       import ModaL from "./ProfilePage.vue"
       import { defineComponent } from 'vue';
       import StarRating from 'vue-star-rating'
@@ -166,14 +160,14 @@
     },
         methods:{
       getDoctors(){
-        axios.get('http://localhost:8000/api/doctors').then((response)=>{
+        api.get('/doctors').then((response)=>{
            this.Doctors=response.data
            this.array1=this.Doctors
            
           })
       },
       getSpecialites(){
-        axios.get('http://localhost:8000/api/specialite').then((response)=>{
+        api.get('/specialite').then((response)=>{
            this.specialites=response.data
           
           })
@@ -215,115 +209,115 @@
   
   
     </script>
-     <style scoped>
-  .icon-container {
-    width: 50px;
-    height: 50px;
-    position: relative;
-  }
-  .cirles{
-    --background:white;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
-  img {
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-  }
-  .head{
-    background-color: #2C2B47;
-  }
-  
-  .status-circle-online {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #22ff00;
-    border: 2px solid white;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-  }
-  .status-circle-offline {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: rgb(255, 0, 0);
-    border: 2px solid white;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-  }
-  
-  ion-header ion-toolbar {
-    overflow: hidden;
-  }
-  
-  ion-chip {
-    --background: #dfdfdf;
-    float: right;
-    color: rgb(27, 22, 22);
-  }
-  .head2{
-    --background:#2C2B47;
-    height: 40px;
-  }
-  
-  #page {
-    --background: #fff
-  }
-  
-  #menu {
-    --background: url(../../public/assets/imgs/6.png) 0 0/100% 100% no-repeat;
-  }
-  
-  
-  .back {
-    --background: #fff;
-  }
-  
-  .custom {
-    --background: #dfdfdf;
-    --color: rgb(27, 22, 22);
-    --placeholder-color: rgb(66, 66, 66);
-    --placeholder-opacity: .8;
-    border-radius: 20px;
-    --padding-bottom: 10px;
-    --padding-end: 10px;
-    --padding-start: 10px;
-    --padding-top: 10px;
-    width: 90%;
-    margin: auto;
-  
-  
-  }
-  
-  .header strong {
-    font-size: 28px;
-    line-height: 36px;
-  }
-  
-  .header ion-avatar {
-    --border-radius: 10px;
-    width: 50px;
-    height: 50px;
-  }
-  
-  .sub-title {
-    padding: 16px;
-  }
-  
-  .sub-title strong {
-    font-size: 18px;
-    line-height: 36px;
-  }
-  
-  .search {
-    top: 40px;
-    display: flex;
-    background:white ;
-  }
+<style scoped>
+.icon-container {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.cirles{
+  --background:white;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.head{
+  background-color: #2C2B47;
+}
+
+.status-circle-online {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #22ff00;
+  border: 2px solid white;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+.status-circle-offline {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(255, 0, 0);
+  border: 2px solid white;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+ion-header ion-toolbar {
+  overflow: hidden;
+}
+
+ion-chip {
+  --background: #dfdfdf;
+  float: right;
+  color: rgb(27, 22, 22);
+}
+.head2{
+  --background:#2C2B47;
+  height: 40px;
+}
+
+#page {
+  --background: #fff
+}
+
+#menu {
+  --background: url(../../public/assets/imgs/6.png) 0 0/100% 100% no-repeat;
+}
+
+
+.back {
+  --background: #fff;
+}
+
+.custom {
+  --background: #dfdfdf;
+  --color: rgb(27, 22, 22);
+  --placeholder-color: rgb(66, 66, 66);
+  --placeholder-opacity: .8;
+  border-radius: 20px;
+  --padding-bottom: 10px;
+  --padding-end: 10px;
+  --padding-start: 10px;
+  --padding-top: 10px;
+  width: 90%;
+  margin: auto;
+
+
+}
+
+.header strong {
+  font-size: 28px;
+  line-height: 36px;
+}
+
+.header ion-avatar {
+  --border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.sub-title {
+  padding: 16px;
+}
+
+.sub-title strong {
+  font-size: 18px;
+  line-height: 36px;
+}
+
+.search {
+  top: 40px;
+  display: flex;
+  background:white ;
+}
   
   .search ion-input {
     background: rgb(234, 232, 232);
@@ -368,6 +362,13 @@
     opacity: none;
     opacity: 1;
   }
+  .even {
+    --background: #fef7e6;
+}
+
+.odd {
+  --background: #ffffff;
+}
   
   .card-categories {
     padding: 16px;

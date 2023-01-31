@@ -75,6 +75,7 @@
 import axios from  "axios";
 import {starOutline,starSharp } from 'ionicons/icons';
 import { defineComponent } from 'vue';
+import api from "../services/api";
 import {IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader ,IonCol,
     IonContent,
     IonHeader,
@@ -122,7 +123,7 @@ export default defineComponent({
       formData.append('user_id', this.doctor.id); // this.userId should be replaced by the actual user id
 
       try {
-        const response = await axios.put('http://localhost:8000/api/update/avatar', formData,{ headers:
+        const response = await api.put('/update/avatar', formData,{ headers:
         {'Content-Type': 'multipart/form-data'}});
         console.log(response.data.message);
       } catch (error) {
@@ -131,7 +132,7 @@ export default defineComponent({
     },
         submitForm() {
          this.doctor.specialite= this.selectedSpecialite
-      axios.put('http://localhost:8000/api/update/patient/'+this.doctor.id, this.doctor)
+      api.put('/update/patient/'+this.doctor.id, this.doctor)
         .then(response => {
           console.log(response);
         })
@@ -151,7 +152,7 @@ export default defineComponent({
         },
         getDoctorsById(){
         const id =this.$store.state.auth.user.id ;
-      axios.get('http://localhost:8000/api/get/patient/'+id).then((response)=>{
+      api.get('/get/patient/'+id).then((response)=>{
          this.doctor=response.data
          this.selectedSpecialite = this.doctor.specialite
        //  this.doctor.gender="male"
@@ -159,7 +160,7 @@ export default defineComponent({
         })
     },
     getspecialite(){
-      axios.get('http://localhost:8000/api/specialite/').then((response)=>{
+      api.get('/specialite/').then((response)=>{
          this.specialites=response.data
  
         })

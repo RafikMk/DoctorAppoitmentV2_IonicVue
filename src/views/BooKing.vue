@@ -28,6 +28,8 @@
   import { defineComponent } from "vue";
   import {modalController} from "@ionic/vue";
   import axios from  "axios";
+  import api from "../services/api";
+
   export default defineComponent({ 
     name: "BooKing",
     setup() {
@@ -69,7 +71,7 @@ props: {
         time_id:this.time.id
       }
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/booking', bookingData)
+        const response = await api.post('/booking', bookingData)
         console.log(response.data)
       } catch (error) {
         console.error(error)

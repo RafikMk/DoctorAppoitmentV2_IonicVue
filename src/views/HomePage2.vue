@@ -1,28 +1,34 @@
 <template>
     <ion-page>
-     
+      <ion-header>
+
+    </ion-header>
+
       <ion-content :fullscreen="true">
         <ion-button class="button1"  @click="$router.push('/signin')" shape="round" color="#7FD9B2" size="large">Sign in</ion-button>
         <ion-button   @click="$router.push({path:'/signup' })" class="button2"  shape="round" color="#7FD9B2" size="large">Sign up</ion-button>
       </ion-content>
-     
-      
-      
-   
     </ion-page>
   </template>
   
   <script lang="ts">
-  import { IonContent,  IonPage,  IonButton, } from '@ionic/vue';
+  import { IonContent,  IonPage,  IonButton,IonHeader } from '@ionic/vue';
   import { defineComponent } from 'vue';
   
   export default defineComponent({
     name: 'HomePage2',
-    components: {
-      IonContent,
-      IonPage,
-      IonButton
-    }
+    components: { IonContent,
+    IonPage,
+    IonButton,
+ 
+    IonHeader
+    },    mounted: function(){
+      alert("gg")
+
+   //  alert('hh)')
+//this.OneSignalInit()
+},
+
   });
   </script>
   

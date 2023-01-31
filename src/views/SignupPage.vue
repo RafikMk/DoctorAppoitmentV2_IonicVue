@@ -58,7 +58,7 @@ export default defineComponent({
   },
   mounted() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/list");
     }
   },
     methods: {

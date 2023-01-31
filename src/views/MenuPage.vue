@@ -1,6 +1,7 @@
 <template>
   <ion-menu content-id="main-content">
-    <ion-content >   <ion-list>
+    <ion-content > 
+        <ion-list>
       <ion-list-header>
         Navigate
       </ion-list-header>
@@ -27,6 +28,16 @@ Deconexion          </ion-label>
       <ion-header>
         
          </ion-header>
+         <div v-if="['/', '/signin', '/signup','/home','/home2'].includes($route.path)">
+
+         <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button default-href="home"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+    </div>
+         <div v-if="!['/', '/signin', '/signup','/home','/home2'].includes($route.path)">
+
       <div class="head">
   <ion-menu-toggle>
             <ion-button fill="clear">
@@ -37,7 +48,8 @@ Deconexion          </ion-label>
 
         <ion-chip>
   <ion-avatar>
-    <img alt="Silhouette of a person's head" src="https://github.com/vagnersabadi/ionic-doctor-appointments-app/blob/main/src/assets/avatar.png?raw=true" />
+    <ion-img :src="'http://127.0.0.1:8000/profile/'+this.$store.state.auth.user.image"></ion-img>
+
   </ion-avatar>
   <ion-label>{{this.$store.state.auth.user.username
 }}</ion-label>
@@ -50,7 +62,10 @@ Deconexion          </ion-label>
   </ion-item>
 
 </div>
+</div>
+
     </ion-header>
+
     <ion-content class="ion-padding">
       
       <ion-router-outlet />
@@ -63,7 +78,7 @@ Deconexion          </ion-label>
     import { clipboardOutline, camera, exitOutline,contractOutline } from 'ionicons/icons';
     import { IonApp, IonRouterOutlet,IonSplitPane } from '@ionic/vue';
 
-  import {
+  import {IonBackButton,IonListHeader,IonButtons,IonImg,IonButton,IonChip,IonAvatar,
     IonList,
     IonContent,
     IonHeader,
@@ -76,7 +91,7 @@ Deconexion          </ion-label>
   } from '@ionic/vue';
   import { defineComponent } from 'vue';
   export default defineComponent({
-    components: {
+    components: {IonBackButton,IonListHeader,IonButtons,IonImg,IonToolbar,IonButton,IonChip,IonAvatar,
       IonRouterOutlet,
       IonIcon,
       IonList,
@@ -126,9 +141,12 @@ this.title =titre
     }
     },
     mounted: function(){
-       this.nameuser =this.$store.state.auth.user.name ;
-
-      this.title = this.$route.name;
+      try {
+        this.nameuser =this.$store.state.auth.user.name ;
+      } catch (error) {
+        console.error(error)
+      }
+        this.title = this.$route.name;
 
    //  alert('hh)')
 //this.OneSignalInit()
