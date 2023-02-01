@@ -16,7 +16,7 @@
 <ion-content>
   <div id="profile-info">
     <div id="profile-image" class='icon-container'>
-  <img :src="'http://127.0.0.1:8000/profile/'+Doctor.image" />
+  <img :src="'http://204.48.29.155:7080/profile/'+Doctor.image" />
   <div v-if="Doctor.status=='online'" class='status-circle-online'>
   </div>
   <div  v-if="Doctor.status=='offline'" class='status-circle-offline'>
@@ -149,7 +149,7 @@
 import { IonIcon } from '@ionic/vue';
 import {IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal, IonToast, IonContent, IonHeader, IonToolbar,modalController,IonButton,IonButtons,IonItem,IonChip} from "@ionic/vue";
 import { defineComponent } from "vue";
-import axios from  "axios";
+//import axios from  "axios";
 import BooKing from './BooKing.vue'
 import api from "../services/api";
 
@@ -305,7 +305,7 @@ export default defineComponent({
   return result;
 },
 getDoctorsDays(id){
-  api.get(`http://127.0.0.1:8000/api/doctor/${id}`).then((response)=>{
+  api.get(`/doctor/${id}`).then((response)=>{
   this.DoctorDays=response.data
   console.log(this.DoctorDays)
 })

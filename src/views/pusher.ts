@@ -1,6 +1,6 @@
 import Pusher from 'pusher-js';
 
-interface PusherOptions {
+/*interface PusherOptions {
   cluster: string;
   encrypted: boolean;
 
@@ -9,7 +9,7 @@ interface PusherOptions {
 const options: PusherOptions = {
   cluster: 'eu',
   encrypted: true,
-};
+};*/
 
 export const pusher = new Pusher('7d715600526512bac5e3', {
     cluster: 'eu',

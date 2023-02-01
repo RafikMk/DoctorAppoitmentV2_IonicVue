@@ -9,6 +9,11 @@
     </ion-input>
   </div>
   <ion-content>
+    <ion-refresher slot="fixed" @ionRefresh="refresh">
+      <ion-refresher-content pulling-icon="arrow-dropdown" pulling-text="Pull to refresh" refreshing-spinner="circles">
+      </ion-refresher-content>
+    </ion-refresher>
+
   <div>
     <div class="sub-title">
       <strong slot="start">Categories</strong>
@@ -37,7 +42,7 @@
  lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
         <ion-ripple-effect></ion-ripple-effect>
         <ion-thumbnail  class='icon-container' slot="start">
-          <ion-img :src="'http://127.0.0.1:8000/profile/'+item.image">
+          <ion-img :src="'http://204.48.29.155:7080/profile/'+item.image">
           </ion-img>
           <div v-if="item.status=='online'" class='status-circle-online'>
     </div>
@@ -80,7 +85,7 @@
     <script lang="ts">
 import api from "../services/api";
   import {searchOutline } from 'ionicons/icons';
-  import {
+  import {IonRefresher,IonRefresherContent,
     IonGrid,
     IonRow,
     IonImg,
@@ -107,7 +112,7 @@ import api from "../services/api";
       import StarRating from 'vue-star-rating'
 
       export default defineComponent({
-        components: {
+        components: {IonRefresher,IonRefresherContent,
           IonGrid,
     IonRow,
           IonPage,
@@ -129,6 +134,7 @@ import api from "../services/api";
         },
         data(){
           return{
+            Baseurl :'http://204.48.29.155/',
       searchOutline:searchOutline,   
       slideOpts : {
       initialSlide: 0,
@@ -159,6 +165,15 @@ import api from "../services/api";
       }
     },
         methods:{
+          refresh(event: any) {
+    console.log('Begin async operation');
+this.getDoctors()
+this.getSpecialites()
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  },
       getDoctors(){
         api.get('/doctors').then((response)=>{
            this.Doctors=response.data

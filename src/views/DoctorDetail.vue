@@ -91,7 +91,7 @@ import {
       IonPage,
     
     } from '@ionic/vue';
-    import api from "../services/api";
+    //import api from "../services/api";
 
     import axios from  "axios";
     import { defineComponent } from 'vue';

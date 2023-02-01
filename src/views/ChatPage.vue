@@ -90,7 +90,7 @@
     import { IonPage,IonHeader,IonContent} from '@ionic/vue';
     import moment from 'moment';
 
-  import axios from  "axios";
+  //import axios from  "axios";
     export default defineComponent({ 
       components: {IonPage,IonHeader,IonContent},
 
@@ -129,6 +129,7 @@
         const patient_id =this.$store.state.auth.user.id
         api.post('/send-message', {patient_id:patient_id , doctor_id :doctor_id ,message: this.message })
           .then(response => {
+            console.log(response)
             this.message = ''
           })   
           .catch(error => {

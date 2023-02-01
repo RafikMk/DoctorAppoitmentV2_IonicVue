@@ -27,7 +27,7 @@
   <script>
   import { defineComponent } from "vue";
   import {modalController} from "@ionic/vue";
-  import axios from  "axios";
+  //import axios from  "axios";
   import api from "../services/api";
 
   export default defineComponent({ 
@@ -72,7 +72,7 @@ props: {
       }
       try {
         const response = await api.post('/booking', bookingData)
-        console.log(response.data)
+     //   console.log(response.data)
       } catch (error) {
         console.error(error)
       }
@@ -80,9 +80,9 @@ props: {
     },
 mounted: function(){
 this.times=this.$props.day.times
-console.log(this.$props.day.date)
-console.log('this is the doctor id blabla vla',this.$props.doctor.id)
-console.log(this.$store.state.auth.user.id)
+//console.log(this.$props.day.date)
+//console.log('this is the doctor id blabla vla',this.$props.doctor.id)
+//console.log(this.$store.state.auth.user.id)
 },
   })
   </script>

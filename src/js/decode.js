@@ -1,7 +1,7 @@
 
 export function decode (lat,long,myCallback)  {
     const geocoder = new window.google.maps.Geocoder();
-    let adresse = null
+  //  let adresse = null
 
 const locationss = { 
     lat : parseFloat(lat),
@@ -11,8 +11,8 @@ const locationss = {
                 if (status == window.google.maps.GeocoderStatus.OK) {
                  //   console.log("results") 
                 //  console.log(results[0].formatted_address) //returns correct data
-               adresse = results[0].formatted_address 
-               console.log(results[0])
+            //   adresse = results[0].formatted_address 
+           //    console.log(results[0])
                myCallback (results[0].formatted_address)
               
                           } 

@@ -72,9 +72,8 @@
 </ion-page>
 </template>
 <script lang="ts">
-import axios from  "axios";
-import {starOutline,starSharp } from 'ionicons/icons';
-import { defineComponent } from 'vue';
+//import axios from  "axios";
+ import { defineComponent } from 'vue';
 import api from "../services/api";
 import {IonButton,IonInput,IonItem,IonRadioGroup ,IonRadio,IonListHeader ,IonCol,
     IonContent,
@@ -115,7 +114,7 @@ export default defineComponent({
     },
     async uploadImage(event) {
       let file = this.$refs.imageInput.files[0];
-      console.log(file);
+      console.log(event);
 
       let formData = new FormData();
 

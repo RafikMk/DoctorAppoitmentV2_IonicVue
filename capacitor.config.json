@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "work",
-	"webDir": "dist",
-	"bundledWebRuntime": false
+  "appId": "io.ionic.starter",
+  "appName": "Doctor Appointment",
+  "webDir": "dist",
+  "bundledWebRuntime": false
 }

@@ -58,14 +58,14 @@
   import { IonButtons, IonButton, IonModal, IonToolbar, IonTitle,IonItem,IonList } from '@ionic/vue';
   import api from "../services/api";
 
-import axios from  "axios";
+//import axios from  "axios";
 import {starOutline,starSharp } from 'ionicons/icons';  import {searchOutline } from 'ionicons/icons';
 import { defineComponent } from 'vue';
 import {
     IonContent,
     IonHeader,
     IonPage,
-    IonLabel,IonIcon
+    IonLabel  
   } from '@ionic/vue';
 export default defineComponent({
     components: {IonItem,IonList,

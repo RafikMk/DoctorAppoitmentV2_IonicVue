@@ -2,7 +2,7 @@ import axios from "axios";
 import TokenService from "./token.service";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "http://204.48.29.155:7080/api",
   headers: {
     "Content-Type": "application/json",
   //  "Authorization": `Bearer ${this.$store.state.auth.user.accessToken}`,
