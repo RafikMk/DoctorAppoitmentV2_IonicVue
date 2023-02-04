@@ -72,7 +72,7 @@ props: {
       }
       try {
         const response = await api.post('/booking', bookingData)
-     //   console.log(response.data)
+       console.log(response.data)
       } catch (error) {
         console.error(error)
       }
