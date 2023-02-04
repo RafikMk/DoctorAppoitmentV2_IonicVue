@@ -300,7 +300,7 @@ export default defineComponent({
   var formattedDate = date2.toISOString().slice(0, 10);
    let a={day:date.getDate(),name:names[date.getDay()],date:formattedDate}
     result.push(a);
-    date.setDate(date.getDate() + 1);
+    date.setDate(date.getDate() );
   }
   return result;
 },

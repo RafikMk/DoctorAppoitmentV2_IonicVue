@@ -46,7 +46,7 @@
           </ion-img>
           <div v-if="item.status=='online'" class='status-circle-online'>
     </div>
-    <div  v-if="item.status=='onfline'" class='status-circle-offline'>
+    <div  v-if="item.status=='offline'" class='status-circle-offline'>
     </div>
         </ion-thumbnail>
         <ion-grid>
