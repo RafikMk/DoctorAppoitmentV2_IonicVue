@@ -4,11 +4,11 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button @click="closeModal">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-icon slot="icon-only" :icon="arrowBack"  ></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-icon  name="ellipsis-vertical"></ion-icon>
+      <ion-icon slot="icon-only" :icon="ellipsisVerticalOutline"  ></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -27,7 +27,7 @@
     <h3 id="profile-name">Dr. {{Doctor.name}}</h3>
 
     <div class="ion-text-center group-actions">
-      <ion-button :style="{'--background':'#e9f1ff'}"  v-on:click="DisplayMessages(Doctor.id)">
+      <ion-button :style="{'--background':'#e9f1ff'}"  v-on:click="DisplayMessages(Doctor.id,Doctor)">
         <ion-icon slot="icon-only" :icon="chatbox" style="color: #6ea8fd;" ></ion-icon>
       </ion-button>
       <ion-button :style="{'--background':'#fff7eb'}"> 
@@ -81,11 +81,9 @@
 <ion-row>
 
       <ion-col :key="index" v-for="(item, index) in Days" size="1.68">
-        <div v-if="item.name=='sun'|| !DoctorDays.find(i => i.date === item.date)">
+        <div v-if="item.name!='sun'&& !DoctorDays.find(i => i.date === item.date)">
         <ion-badge class="group-week-day" color="warning">
-
           <div class="week">
-
             {{ item.day }}
           </div>
           <div class="day">
@@ -95,15 +93,26 @@
           </div>
         </ion-badge>
       </div>
-      <div v-else>
-        <ion-badge :key="item.day" @click="select(item.day)"  class="group-week-day" :color="item.day == selectedDay ? 'primary' : 'light'">
-
+        <div  v-if="DoctorDays.find(i => i.date === item.date)">
+        <ion-badge  :key="item.day" @click="select(item.day)"  class="group-week-day" :color="item.day == selectedDay ? 'primary' : 'light'">
+cc
           <div class="week">
-
             {{ item.day }}
           </div>
           <div class="day">
             <ion-text color="success">
+              {{ item.name }}
+            </ion-text>
+          </div>
+        </ion-badge>
+      </div>
+      <div v-if="item.name=='sun'">
+        <ion-badge style="/* --background: red; */background-color: #818181;" class="group-week-day" >
+          <div class="week">
+            {{ item.day }}
+          </div>
+          <div class="day">
+            <ion-text color="tertiary">
               {{ item.name }}
             </ion-text>
           </div>
@@ -128,10 +137,17 @@
 <ion-modal :is-open="isOpen">
       <ion-header>
         <ion-toolbar>
-          <ion-title>Modal</ion-title>
-          <ion-buttons slot="end">
-            <ion-button @click="setOpen(false)">Close</ion-button>
-          </ion-buttons>
+          <div class="title-and-close">
+            <ion-buttons slot="start">
+      <ion-button @click="setOpen(false)">
+        <ion-icon slot="icon-only" :icon="arrowBack"  ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+   
+  </div>     
+  <ion-buttons slot="end">
+      <ion-icon slot="icon-only" :icon="ellipsisVerticalOutline"  ></ion-icon>
+    </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
@@ -147,19 +163,19 @@
 
 <script lang="ts">
 import { IonIcon } from '@ionic/vue';
-import {IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal, IonToast, IonContent, IonHeader, IonToolbar,modalController,IonButton,IonButtons,IonItem,IonChip} from "@ionic/vue";
+import {IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonModal, IonToast, IonContent, IonHeader, IonToolbar,modalController,IonButton,IonButtons,IonItem,IonChip} from "@ionic/vue";
 import { defineComponent } from "vue";
 //import axios from  "axios";
 import BooKing from './BooKing.vue'
 import api from "../services/api";
 
 import Chat from './ChatPage.vue'
-import {chevronBack,chevronForward,time,videocam,call,navigate,chatbox,camera,location}  from 'ionicons/icons';
+import {chevronBack,chevronForward,time,videocam,call,navigate,chatbox,camera,location,arrowBack,ellipsisVerticalOutline}  from 'ionicons/icons';
 import DirectionsRenderer from '../js/DirectionsRenderer.js'
 import * as  decode from '../js/decode.js'
 export default defineComponent({
   name: "ModaL",
-  components: { IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonTitle,IonModal,
+  components: { IonLabel,IonText,IonBadge,IonCol,IonRow,IonGrid,IonModal,
     IonToast,IonContent, IonHeader,  IonToolbar ,IonIcon,IonButton,IonButtons, IonItem,IonChip, DirectionsRenderer
 },
   setup() {
@@ -178,12 +194,13 @@ export default defineComponent({
         });
         return modal.present();
     }
-    const openModalOfMessages = async (id) => {
+    const openModalOfMessages = async (id,doctor) => {
       
         const modal = await modalController.create({
           component: Chat, 
           componentProps: { 
           doctor_id:id,
+          doctor:doctor
         }
         });
         return modal.present();
@@ -199,6 +216,8 @@ export default defineComponent({
     const d = new Date();
     let month = d.getMonth()+1;
     return{
+      ellipsisVerticalOutline:ellipsisVerticalOutline,
+      arrowBack:arrowBack,
       theDay:null,
       showToast: false,
       selectedDay :'' ,
@@ -296,11 +315,11 @@ export default defineComponent({
   var date = new Date(year, monthIndex, 1);
   var result=[] as any;
   while (date.getMonth() == monthIndex) {
-  var date2=new Date( year, month-1, date.getDate() )
+  var date2=new Date( year, month-1, date.getDate()+1 )
   var formattedDate = date2.toISOString().slice(0, 10);
    let a={day:date.getDate(),name:names[date.getDay()],date:formattedDate}
     result.push(a);
-    date.setDate(date.getDate() );
+    date.setDate(date.getDate() + 1);
   }
   return result;
 },
@@ -351,10 +370,13 @@ getDoctorsDays(id){
     },
 
     select(e:any){
+
       let d= new Date();
-      let d2=new Date(d.getFullYear(),this.currentMonth-1,e)
+      let d2=new Date(d.getFullYear(),this.currentMonth-1,e+1)
       this.selectedDay=e
       var formattedDate = d2.toISOString().slice(0, 10);
+      console.log(formattedDate)
+    
       this.theDay=this.DoctorDays.find(i => i.date == formattedDate)
     },
     showToaster(day) {
@@ -366,10 +388,10 @@ getDoctorsDays(id){
     
     }
   },
-  DisplayMessages(id)
+  DisplayMessages(id,doctor)
   {
     
- this.openModalOfMessages(id)
+ this.openModalOfMessages(id,doctor)
 
   }
 
@@ -380,6 +402,7 @@ getDoctorsDays(id){
     this.getDoctorsDays(this.doctor.id)
     console.log(this.DoctorDays)
     this.Days=this.getDays(this.currentMonth);
+        console.log("*************");
     console.log(this.Days);
 
 
@@ -558,5 +581,8 @@ ion-header {
 	text-transform: capitalize;
 	width: 200px;
 }
-
+title-and-close {
+  display: flex;
+  align-items: center;
+}
 </style>

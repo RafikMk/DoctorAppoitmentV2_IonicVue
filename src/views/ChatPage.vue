@@ -3,11 +3,18 @@
     <ion-header class="back"></ion-header>
     <ion-content >
       <!-- DIRECT CHAT PRIMARY -->
-      <div style="height: 93%;" class="box box-primary direct-chat direct-chat-primary">
+      <div @swipeup="closeModal" style="height: 93%;" class="box box-primary direct-chat direct-chat-primary">
         <div class="box-header with-border" >
-          <h3 class="box-title">Direct Chat</h3>
+            <div class="title-and-close">
+    <ion-buttons slot="start">
+      <ion-button @click="closeModal">
+        <ion-icon slot="icon-only" :icon="arrowBack"></ion-icon>
+      </ion-button> 
+    </ion-buttons>
+    <h3 class="box-title">{{ doctor.name }}</h3>
+  </div>
           <div class="box-tools pull-right">
-            <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title="3 New Messages">3</span>
+            <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title="3 New Messages">{{ messages.length }}</span>
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
             <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
@@ -26,7 +33,9 @@
                 <span class="direct-chat-timestamp pull-right"> {{ formattedDate(message.created_at) }} </span>
               </div>
               <!-- /.direct-chat-info -->
-              <img class="direct-chat-img" src="https://bootdey.com/img/Content/user_1.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
+              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.doctor_id " :src="'http://204.48.29.155:7080/profile/'+message.doctor.image"></ion-img>
+              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.patient_id " :src="'http://204.48.29.155:7080/profile/'+message.patient.image"></ion-img>
+
               <div class="direct-chat-text">
                 {{ message.message }}              </div>
               <!-- /.direct-chat-text -->
@@ -83,6 +92,7 @@
     
     <script>
       import api from "../services/api";
+      import {arrowBack,ellipsisVerticalOutline}  from 'ionicons/icons';
 
     import { defineComponent } from "vue";
     import {modalController} from "@ionic/vue";
@@ -105,10 +115,13 @@
   },
   props: {
     doctor_id: Number,
+    doctor : Object
   },
   
       data() {
         return {
+            ellipsisVerticalOutline:ellipsisVerticalOutline,
+      arrowBack:arrowBack,
           messages: [] , 
         message: '' ,
           
@@ -495,6 +508,10 @@
 .direct-chat-text:before {
     border-width: 6px;
     margin-top: -6px;
+}
+.title-and-close {
+  display: flex;
+  align-items: center;
 }
 .right .direct-chat-text {
     margin-right: 50px;

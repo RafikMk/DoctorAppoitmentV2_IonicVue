@@ -21,6 +21,8 @@
       <ion-button  @click="createBooking()" color="tertiary" class="appointment">
        Book Appointment
      </ion-button>
+     <ion-toast v-if="showToast" :message="mesg" :duration="2000"></ion-toast>
+
     </ion-content>
   </template>
   
@@ -47,6 +49,7 @@ props: {
 
     data() {
       return {
+        mesg:'',
         times: [],
         time:""
         
@@ -73,9 +76,13 @@ props: {
       try {
         const response = await api.post('/booking', bookingData)
        console.log(response.data)
-      } catch (error) {
-        console.error(error)
-      }
+       this.mesg= response.data
+        this.showToast = true;
+      } catch (error_message) {
+        this.mesg= error
+        this.showToast = true;
+        console.error(error_message.data.message)
+      }  
     }
     },
 mounted: function(){
