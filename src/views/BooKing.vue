@@ -79,7 +79,7 @@ props: {
        this.mesg= response.data
         this.showToast = true;
       } catch (error_message) {
-        this.mesg= error
+        this.mesg= error_message
         this.showToast = true;
         console.error(error_message.data.message)
       }  
