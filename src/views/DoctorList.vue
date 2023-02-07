@@ -2,7 +2,7 @@
     <ion-page id="main-content"> 
     <ion-header class="back"></ion-header>
     <div lines="none" class="search">
-    <ion-input placeholder="Search, e.g. Dr.Louis Pasterur">
+      <ion-input v-model="searchTerm" placeholder="Search, e.g. Dr.Louis Pasterur">
       <ion-button color="tertiary">
         <ion-icon :icon="searchOutline" slot="icon-only"></ion-icon>
       </ion-button>
@@ -38,8 +38,8 @@
     </div>
     <div class="list-doctors">
       <ion-item :key="index"
-          v-for="(item, index) in array1" :class="index % 2 === 0 ? 'even' : 'odd'"
- lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
+      v-for="(item, index) in filteredArray" :class="index % 2 === 0 ? 'even' : 'odd'"
+      lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
         <ion-ripple-effect></ion-ripple-effect>
         <ion-thumbnail  class='icon-container' slot="start">
           <ion-img :src="'http://204.48.29.155:7080/profile/'+item.image">
@@ -134,6 +134,7 @@ import api from "../services/api";
         },
         data(){
           return{
+            searchTerm: '',
             Baseurl :'http://204.48.29.155/',
       searchOutline:searchOutline,   
       slideOpts : {
@@ -162,7 +163,16 @@ import api from "../services/api";
     computed: {
       currentUser() {
         return this.$store.state.auth.user;
-      }
+      },
+      filteredArray() {
+    return this.array1.filter(item => {
+      console.log(item.specialite)
+      console.log(typeof item.specialite)
+
+      return item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+             item.specialite.toLowerCase().includes(this.searchTerm.toLowerCase());
+    });
+  }
     },
         methods:{
           refresh(event: any) {
