@@ -44,10 +44,10 @@
       </ion-header>
       <ion-content class="ion-padding">
         <ion-item>
-        <ion-label>Ailment: {{ presc.ailment }}</ion-label>
-        <ion-label>Symptoms: {{ presc.symptoms }}</ion-label>
-        <ion-label>Medicine: {{ presc.medicine }}</ion-label>
-        <ion-label>Procedure: {{ presc.procedure }}</ion-label>
+        <ion-label>Ailment: {{ presc.ailment }}</ion-label> <br>
+        <ion-label>Symptoms: {{ presc.symptoms }}</ion-label> <br>
+        <ion-label>Medicine: {{ presc.medicine }}</ion-label> <br>
+        <ion-label>Procedure: {{ presc.procedure }}</ion-label> <br>
       </ion-item>
       </ion-content>
     </ion-modal>
@@ -78,7 +78,7 @@ export default defineComponent({
     data(){
         return{searchOutline:searchOutline,
           isOpen: false,
-          presc : null as any,
+          presc : {} as any,
           appointments: [] as any,
           starsnb :[] ,
           starsnb2 :[] ,
@@ -95,13 +95,11 @@ export default defineComponent({
       methods:{
         setOpen(isOpen: boolean,appointment : any) {
         this.isOpen = isOpen;
-        api.get(`/prescription/2/${appointment.doctor_id}`).then(response => {
+        api.get(`/prescription/${appointment.id}`).then(response => {
       this.presc = response.data
-      this.presc.ailment =response.data.data[0].ailment
-      this.presc.symptoms =response.data.data[0].symptoms
-      this.presc.medicine =response.data.data[0].medicine
-      this.presc.procedure =response.data.data[0].procedure
-      console.log( this.presc.data[0])
+      this.presc =  this.presc.data[0]
+     // console.log( this.presc.data[0])
+
     });
       },
     getbooking() {

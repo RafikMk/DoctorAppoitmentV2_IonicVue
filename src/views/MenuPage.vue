@@ -48,7 +48,7 @@ Deconexion          </ion-label>
 
         <ion-chip>
   <ion-avatar>
-    <ion-img :src="'http://204.48.29.155:7080/profile/'+this.$store.state.auth.user.image"></ion-img>
+    <ion-img :src="'http://127.0.0.1:8000/profile/'+this.$store.state.auth.user.image"></ion-img>
 
   </ion-avatar>
   <ion-label>{{this.$store.state.auth.user.username

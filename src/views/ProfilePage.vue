@@ -16,7 +16,7 @@
 <ion-content>
   <div id="profile-info">
     <div id="profile-image" class='icon-container'>
-  <img :src="'http://204.48.29.155:7080/profile/'+Doctor.image" />
+  <img :src="'http://127.0.0.1:8000/profile/'+Doctor.image" />
   <div v-if="Doctor.status=='online'" class='status-circle-online'>
   </div>
   <div  v-if="Doctor.status=='offline'" class='status-circle-offline'>
