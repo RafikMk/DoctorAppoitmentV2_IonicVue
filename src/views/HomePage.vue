@@ -52,7 +52,7 @@ ion-content{
 }
 ion-button{
 position: absolute;
-top: 704px; 
+top: 500px; 
 left: 59px; 
 width: 70%;
 background-color:#2C2B47;

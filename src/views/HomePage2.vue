@@ -23,7 +23,7 @@
  
     IonHeader
     },    mounted: function(){
-      alert("gg")
+    //  alert("gg")
 
    //  alert('hh)')
 //this.OneSignalInit()

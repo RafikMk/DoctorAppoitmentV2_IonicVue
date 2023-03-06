@@ -42,7 +42,10 @@
       lines="none" class="ion-activatable ripple-parent" @click="openModal(item)">
         <ion-ripple-effect></ion-ripple-effect>
         <ion-thumbnail  class='icon-container' slot="start">
-          <ion-img :src="'http://204.48.29.155:7080/profile/'+item.image">
+          <!--   <ion-img :src="'http://204.48.29.155:7080/profile/'+item.image">
+          </ion-img> -->
+
+          <ion-img :src="'http://127.0.0.1:8000/images/'+item.image">
           </ion-img>
           <div v-if="item.status=='online'" class='status-circle-online'>
     </div>

@@ -140,6 +140,7 @@ this.title =titre
     }
     },
     mounted: function(){
+      console.log("eeee"+this.$store.state.auth.user.image)
       try {
         this.nameuser =this.$store.state.auth.user.name ;
       } catch (error) {

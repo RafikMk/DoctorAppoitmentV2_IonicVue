@@ -16,7 +16,9 @@
 <ion-content>
   <div id="profile-info">
     <div id="profile-image" class='icon-container'>
-  <img :src="'http://127.0.0.1:8000/profile/'+Doctor.image" />
+  <img :src="'http://127.0.0.1:8000/images/'+Doctor.image" />
+    <!--   <ion-img :src="'http://204.48.29.155:7080/profile/'+item.image">
+          </ion-img> -->
   <div v-if="Doctor.status=='online'" class='status-circle-online'>
   </div>
   <div  v-if="Doctor.status=='offline'" class='status-circle-offline'>
@@ -49,7 +51,7 @@
 
     <ion-label>
       <div class="sub-title">
-        <strong slot="start">About</strong>
+        <strong slot="start">Description</strong>
       </div>
       <p id="about-description">{{Doctor.description }}</p>
     </ion-label>
@@ -59,7 +61,7 @@
   <ion-item lines="none" class="title schedules">
     <ion-label>
       <div class="sub-title">
-        <strong slot="start">Schedules</strong>
+        <strong slot="start">Calendrier</strong>
       </div>
     </ion-label>
 

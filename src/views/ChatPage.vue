@@ -33,9 +33,10 @@
                 <span class="direct-chat-timestamp pull-right"> {{ formattedDate(message.created_at) }} </span>
               </div>
               <!-- /.direct-chat-info -->
-              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.doctor_id " :src="'http://204.48.29.155:7080/profile/'+message.doctor.image"></ion-img>
-              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.patient_id " :src="'http://204.48.29.155:7080/profile/'+message.patient.image"></ion-img>
-
+              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.doctor_id " :src="'http://127.0.0.1:8000/images/'+message.doctor.image"></ion-img>
+              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.patient_id " :src="'http://127.0.0.1:8000/profile/'+message.patient.image"></ion-img>
+  <!--                 <ion-img class="direct-chat-img" v-if="message.envoye_par === message.doctor_id " :src="'http://204.48.29.155:7080/images/'+message.doctor.image"></ion-img>
+              <ion-img class="direct-chat-img" v-if="message.envoye_par === message.patient_id " :src="'http://204.48.29.155:7080/images/'+message.patient.image"></ion-img> -->
               <div class="direct-chat-text">
                 {{ message.message }}              </div>
               <!-- /.direct-chat-text -->
